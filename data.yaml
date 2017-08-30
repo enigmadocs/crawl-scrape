@@ -1,0 +1,47 @@
+extract:
+  - step:
+    action: extract.source.http.DownloadFiles
+    allow_redirects: True
+    fetch:
+      - 'http://data-interview.enigmalabs.org/companies'
+
+  - step: Extract company endpoints form each index page.
+    action: extract.formats.html.ExtractLink
+    criteria:
+      id: '^\d+$'
+
+  - step: Download each company endpoint
+    action: extract.source.http.DownloadFiles
+
+transform:
+  - step: Set the company listings table schema
+    action: transform.schema.SetSchema
+    fields:
+      - name: Company_Name
+        type: string
+      - name: Company_Website
+        type: string
+      - name: Company_Description
+        type: string
+
+  - step: Parse the company listing HTML
+    action: extract.formats.html.ReadRecords
+    record_selector: tbody
+    extract:
+      - selector: tr > td
+        child_index: 1
+        property: text
+      - selector: tr > td
+        child_index: 15
+        property: text
+      - selector: td
+        child_index: 17
+        property: text
+
+  - step: Set file name
+    action: load.SetTableName
+    table_name: company_listings
+
+  - step: Save locally
+    action: load.OutputCSV
+    repository: .
