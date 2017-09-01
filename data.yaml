@@ -9,7 +9,7 @@ extract:
   #   fetch:
   #     - 'http://data-interview.enigmalabs.org/companies'
 
-  # Use this and the following step for multipage crawl using custom step
+  # Use the next two steps for multipage crawl using custom step
   - step: 1B-1. Call custom step to download each of the index pages
     action: crawl.CrawlPages
     base_url: http://data-interview.enigmalabs.org/companies
