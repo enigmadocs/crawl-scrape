@@ -1,5 +1,5 @@
-dependencies:
- 'lib.crawl': 'crawl'
+# dependencies:
+#  'lib.crawl': 'crawl'
 
 extract:
   # Use this step to crawl just the first page of company listings
