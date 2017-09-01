@@ -7,7 +7,7 @@ import parsekit
 class CrawlPages(parsekit.Step):
 
     base_url = parsekit.Argument(
-        "The root of the site to begin crawling.",
+        "The root of the site.",
         required=True,
         type=basestring)
 
