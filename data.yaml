@@ -2,7 +2,7 @@
 #  'lib.crawl': 'crawl'
 
 extract:
-  # Use this step to crawl just the first page of company listings
+  # Use this step to crawl the first page of company listings
   - step: Download the page with the first 10 company links
     action: extract.source.http.DownloadFiles
     allow_redirects: True
