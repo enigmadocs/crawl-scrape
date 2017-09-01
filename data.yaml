@@ -3,16 +3,19 @@
 
 extract:
   # Use this step to crawl the first page of company listings
-  - step: Download the page with the first 10 company links
+  - step: 1A. Download the page with the first 10 company links
     action: extract.source.http.DownloadFiles
     allow_redirects: True
     fetch:
       - 'http://data-interview.enigmalabs.org/companies'
 
-  # Use this step for multipage crawl using custom step
-  # - step: Call custom step to download each of the index pages
+  # Use this and the following step for multipage crawl using custom step
+  # - step: 1B-1. Call custom step to download each of the index pages
   #   action: crawl.CrawlPages
   #   base_url: http://data-interview.enigmalabs.org/companies
+
+  # - step: 1B-2. Download each index page
+  #   action: extract.source.http.DownloadFiles
 
   - step: Extract company endpoints from index page
     action: extract.formats.html.ExtractLink
