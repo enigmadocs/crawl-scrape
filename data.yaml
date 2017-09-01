@@ -17,10 +17,10 @@ extract:
   # - step: 1B-2. Download each index page
   #   action: extract.source.http.DownloadFiles
 
-  # - step: Extract company endpoints from index page
-  #   action: extract.formats.html.ExtractLink
-  #   criteria:
-  #     id: '^\d+$'
+  - step: Extract company endpoints from index page
+    action: extract.formats.html.ExtractLink
+    criteria:
+      id: '^\d+$'
 
   - step: Download each company endpoint
     action: extract.source.http.DownloadFiles
